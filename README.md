@@ -91,9 +91,9 @@ sudo python3 setup.py develop
     ...
   ```
 
-2. regist the distiller in `distiller_dict` at `mdistiller/distillers/__init__.py`
+2. regist the distiller in `distiller_dict` at `EDKD/distillers/__init__.py`
 
-3. regist the corresponding hyper-parameters at `mdistiller/engines/cfg.py`
+3. regist the corresponding hyper-parameters at `EDKD/engines/cfg.py`
 
 4. create a new config file and test it.
 
