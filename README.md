@@ -9,38 +9,11 @@
 On CIFAR-100:
 
 
-| Teacher <br> Student |ResNet56 <br> ResNet20|ResNet110 <br> ResNet32| ResNet32x4 <br> ResNet8x4| WRN-40-2 <br> WRN-16-2| WRN-40-2 <br> WRN-40-1 | VGG13 <br> VGG8|
-|:---------------:|:-----------------:|:-----------------:|:-----------------:|:------------------:|:------------------:|:--------------------:|
-| KD | 70.66 | 73.08 | 73.33 | 74.92 | 73.54 | 72.98 |
-| **DKD** | **71.97** | **74.11** | **76.32** | **76.23** | **74.81** | **74.68** |
-
-
-| Teacher <br> Student |ResNet32x4 <br> ShuffleNet-V1|WRN-40-2 <br> ShuffleNet-V1| VGG13 <br> MobileNet-V2| ResNet50 <br> MobileNet-V2| ResNet32x4 <br> MobileNet-V2|
-|:---------------:|:-----------------:|:-----------------:|:-----------------:|:------------------:|:------------------:|
-| KD | 74.07 | 74.83 | 67.37 | 67.35 | 74.45 |
-| **DKD** | **76.45** | **76.70** | **69.71** | **70.35** | **77.07** |
-
-
-# MDistiller
-
-### Introduction
-
-MDistiller supports the following distillation methods on CIFAR-100, ImageNet and MS-COCO:
-|Method|Paper Link|CIFAR-100|ImageNet|MS-COCO|
-|:---:|:---:|:---:|:---:|:---:|
-|KD| <https://arxiv.org/abs/1503.02531> |&check;|&check;| |
-|FitNet| <https://arxiv.org/abs/1412.6550> |&check;| | |
-|AT| <https://arxiv.org/abs/1612.03928> |&check;|&check;| |
-|NST| <https://arxiv.org/abs/1707.01219> |&check;| | |
-|PKT| <https://arxiv.org/abs/1803.10837> |&check;| | |
-|KDSVD| <https://arxiv.org/abs/1807.06819> |&check;| | |
-|OFD| <https://arxiv.org/abs/1904.01866> |&check;|&check;| |
-|RKD| <https://arxiv.org/abs/1904.05068> |&check;| | |
-|VID| <https://arxiv.org/abs/1904.05835> |&check;| | |
-|SP| <https://arxiv.org/abs/1907.09682> |&check;| | |
-|CRD| <https://arxiv.org/abs/1910.10699> |&check;|&check;| |
-|ReviewKD| <https://arxiv.org/abs/2104.09044> |&check;|&check;|&check;|
-|DKD| <https://arxiv.org/abs/2203.08679> |&check;|&check;|&check;|
+| **Teacher <br> Student** |**ResNet32x4 <br> ResNet8x4**| **WRN-40-2 <br> WRN-16-2** |  **WRN-40-2 <br> WRN-40-1** | **VGG13 <br> VGG8** | **VGG13 <br> MobileNet-V2** | **ResNet50 <br> MobileNet-V2** | **ResNet32x4 <br> MobileNet-V2** |
+|:---------------:|:-----------------:|:-----------------:|:-----------------:|:------------------:|:------------------:|:------------------:|:------------------:|
+| KD | 73.33 | 74.92 | 73.54 | 72.98 | 67.37 | 67.35 | 74.45 |
+| DKD | 76.01 | 75.72 | 74.67 | 74.14 | 69.67 | 69.85 | 76.59 |
+| **EDKD** | **76.28** | **75.76** | **74.80** | **74.68** | **69.83** | **70.49** | **77.22** |
 
 
 ### Installation
@@ -63,7 +36,7 @@ sudo python3 setup.py develop
 0. Wandb as the logger
 
 - The registeration: <https://wandb.ai/home>.
-- If you don't want wandb as your logger, set `CFG.LOG.WANDB` as `False` at `mdistiller/engine/cfg.py`.
+- If you don't want wandb as your logger, set `CFG.LOG.WANDB` as `False` at `EDKD/engine/cfg.py`.
 
 1. Evaluation
 
@@ -79,8 +52,7 @@ sudo python3 setup.py develop
   python3 tools/eval.py -m ResNet34 -d imagenet # ResNet34 on imagenet
   
   # evaluate students
-  python3 tools/eval.p -m resnet8x4 -c download_ckpts/dkd_resnet8x4 # dkd-resnet8x4 on cifar100
-  python3 tools/eval.p -m MobileNetV1 -c download_ckpts/imgnet_dkd_mv1 -d imagenet # dkd-mv1 on imagenet
+  python3 tools/eval.p -m resnet8x4 -c download_ckpts/edkd_resnet8x4 # edkd-resnet8x4 on cifar100
   python3 tools/eval.p -m model_name -c output/your_exp/student_best # your checkpoints
   ```
 
@@ -97,28 +69,10 @@ sudo python3 setup.py develop
   python3 tools/train.py --cfg configs/cifar100/dkd/res32x4_res8x4.yaml SOLVER.BATCH_SIZE 128 SOLVER.LR 0.1
   ```
 
-3. Training on ImageNet
-
-- Download the dataset at <https://image-net.org/> and put them to `./data/imagenet`
-
-  ```bash
-  # for instance, our DKD method.
-  python3 tools/train.py --cfg configs/imagenet/r34_r18/dkd.yaml
-  ```
-
-4. Training on MS-COCO
-
-- see [detection.md](detection/README.md)
-
-
-5. Extension: Visualizations
-
-- Jupyter notebooks: [tsne](tools/visualizations/tsne.ipynb) and [correlation_matrices](tools/visualizations/correlation.ipynb)
-
 
 ### Custom Distillation Method
 
-1. create a python file at `mdistiller/distillers/` and define the distiller
+1. create a python file at `EDKD/distillers/` and define the distiller
   
   ```python
   from ._base import Distiller
@@ -154,25 +108,6 @@ If this repo is helpful for your research, please consider citing the paper:
   journal={arXiv preprint arXiv:2203.08679},
   year={2022}
 }
-@article{zhao2023dot,
-  title={DOT: A Distillation-Oriented Trainer},
-  author={Zhao, Borui and Cui, Quan and Song, Renjie and Liang, Jiajun},
-  journal={arXiv preprint arXiv:2307.08436},
-  year={2023}
-}
+
 ```
 
-# License
-
-MDistiller is released under the MIT license. See [LICENSE](LICENSE) for details.
-
-# Acknowledgement
-
-- Thanks for CRD and ReviewKD. We build this library based on the [CRD's codebase](https://github.com/HobbitLong/RepDistiller) and the [ReviewKD's codebase](https://github.com/dvlab-research/ReviewKD).
-
-- Thanks Yiyu Qiu and Yi Shi for the code contribution during their internship in MEGVII Technology.
-
-- Thanks Xin Jin for the discussion about DKD.
-"# EDKD" 
-"# EDKD" 
-"# EDKD" 
