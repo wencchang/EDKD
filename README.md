@@ -3,7 +3,8 @@
 ### Framework & Performance
 
 <div style="text-align:center"><img src=".github/dkd.png" width="80%" ></div>
-![](https://github.com/wencchang/EDKD/blob/main/edkd.png)
+![EDKD](https://github.com/wencchang/EDKD/blob/main/edkd.png)
+
 ### Main Benchmark Results
 
 On CIFAR-100:
