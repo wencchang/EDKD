@@ -9,13 +9,6 @@ This repo is
 (3) the official implementation of the ICCV-2023 paper: [DOT: A Distillation-Oriented Trainer](https://openaccess.thecvf.com/content/ICCV2023/papers/Zhao_DOT_A_Distillation-Oriented_Trainer_ICCV_2023_paper.pdf).
 
 
-# DOT: A Distillation-Oriented Trainer
-
-### Framework
-
-<div style="text-align:center"><img src=".github/dot.png" width="80%" ></div>
-
-
 # Decoupled Knowledge Distillation
 
 ### Framework & Performance
