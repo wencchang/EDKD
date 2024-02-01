@@ -1,14 +1,4 @@
-<div align=center><img src=".github/mdistiller.png" width="40%" ><div align=left>
-
-This repo is
-
-(1) a PyTorch library that provides classical knowledge distillation algorithms on mainstream CV benchmarks,
-
-(2) the official implementation of the CVPR-2022 paper: [Decoupled Knowledge Distillation](https://arxiv.org/abs/2203.08679).
-
-
-
-# Decoupled Knowledge Distillation
+#  Exponential Dynamic Knowledge Distillation
 
 ### Framework & Performance
 
