@@ -2,7 +2,7 @@
 
 ### Framework & Performance
 
-![EDKD](https://github.com/wencchang/EDKD/blob/main/EDKD.png)
+![EDKD](https://github.com/wencchang/EDKD/blob/main/edkd.png)
 
 
 ### Main Benchmark Results
