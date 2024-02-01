@@ -15,28 +15,6 @@ This repo is
 
 <div style="text-align:center"><img src=".github/dot.png" width="80%" ></div>
 
-### Main Benchmark Results
-
-On CIFAR-100:
-
-| Teacher <br> Student | ResNet32x4 <br> ResNet8x4| VGG13 <br> VGG8| ResNet32x4 <br>  ShuffleNet-V2|
-|:---------------:|:-----------------:|:-----------------:|:-----------------:|
-| KD | 73.33 | 72.98 | 74.45 |
-| **KD+DOT** | **75.12** | **73.77** | **75.55** |
-
-On Tiny-ImageNet:
-
-| Teacher <br> Student |ResNet18 <br> MobileNet-V2|ResNet18 <br> ShuffleNet-V2|
-|:---------------:|:-----------------:|:-----------------:|
-| KD | 58.35 | 62.26 | 
-| **KD+DOT** | **64.01** | **65.75** |
-
-On ImageNet:
-
-| Teacher <br> Student |ResNet34 <br> ResNet18|ResNet50 <br> MobileNet-V1|
-|:---------------:|:-----------------:|:-----------------:|
-| KD | 71.03 | 70.50 | 
-| **KD+DOT** | **71.72** | **73.09** |
 
 # Decoupled Knowledge Distillation
 
@@ -60,13 +38,6 @@ On CIFAR-100:
 | KD | 74.07 | 74.83 | 67.37 | 67.35 | 74.45 |
 | **DKD** | **76.45** | **76.70** | **69.71** | **70.35** | **77.07** |
 
-
-On ImageNet:
-
-| Teacher <br> Student |ResNet34 <br> ResNet18|ResNet50 <br> MobileNet-V1|
-|:---------------:|:-----------------:|:-----------------:|
-| KD | 71.03 | 70.50 | 
-| **DKD** | **71.70** | **72.05** |
 
 # MDistiller
 
